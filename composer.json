@@ -1,0 +1,22 @@
+{
+    "name": "filipp-qoma/zf2-domain-model",
+    "description": "Alternative DB implementation of Zend Framework 2 Zend\\Db",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filipp 'Qoma' Kucherjavenko",
+            "email": "filippk8@gmail.com",
+            "homepage": "http://www.qoma.name"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "DomainModel\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.23",
+        "zendframework/zend-db": "2.3.*",
+        "zendframework/zend-servicemanager": "2.3.*"
+    }
+}

@@ -1,4 +1,4 @@
 zf2-domain-model
 ================
 
-Alternative DB implementation for Zend Framework 2
+Alternative DB implementation of Zend Framework 2 Zend\Db
