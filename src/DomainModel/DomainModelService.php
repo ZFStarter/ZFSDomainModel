@@ -21,11 +21,11 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  */
 class DomainModelService implements ServiceLocatorAwareInterface
 {
-    const DOMAIN_MODEL_ADAPTER       = 'DomainModel\Adapter';
-    const DOMAIN_MODEL_TABLE_GATEWAY = 'DomainModel\Gateway\DomainTableGateway';
-    const DOMAIN_MODEL_RESULT_SET    = 'DomainModel\ResultSet\DomainResultSet';
-    const DOMAIN_MODEL_OBJECT        = 'DomainModel\Object\DomainObject';
-    const DOMAIN_MODEL_OBJECT_MAGIC  = 'DomainModel\Object\DomainObjectMagic';
+    const DOMAIN_MODEL_ADAPTER          = 'DomainModel\Adapter';
+    const DOMAIN_MODEL_TABLE_GATEWAY    = 'DomainModel\Gateway\DomainTableGateway';
+    const DOMAIN_MODEL_RESULT_SET       = 'DomainModel\ResultSet\DomainResultSet';
+    const DOMAIN_MODEL_OBJECT_INTERFACE = 'DomainModel\Object\DomainObjectInterface';
+    const DOMAIN_MODEL_OBJECT_MAGIC     = 'DomainModel\Object\DomainObjectMagic';
 
     /** @var ServiceLocatorInterface */
     protected $serviceLocator;
@@ -113,7 +113,7 @@ class DomainModelService implements ServiceLocatorAwareInterface
         if ($objectPrototypeClassName) {
             $objectPrototypeReflection = new \ReflectionClass($objectPrototypeClassName);
 
-            if (!$objectPrototypeReflection->isSubclassOf(self::DOMAIN_MODEL_OBJECT)) {
+            if (!$objectPrototypeReflection->isSubclassOf(self::DOMAIN_MODEL_OBJECT_INTERFACE)) {
                 throw new \RuntimeException('Object prototype class cannot be proceed automatically');
             }
         } else {

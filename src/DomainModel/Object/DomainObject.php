@@ -12,11 +12,8 @@ namespace DomainModel\Object;
  * Class DomainObject
  * @package DomainModel\Object
  */
-class DomainObject
+class DomainObject implements DomainObjectInterface
 {
-    /** @var  bool */
-    public $new = true;
-
     /** @var  array */
     protected $data;
 
@@ -100,6 +97,6 @@ class DomainObject
 
     public function __sleep()
     {
-        return array('data', 'new');
+        return array('data');
     }
 }

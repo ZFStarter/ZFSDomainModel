@@ -8,7 +8,7 @@
 
 namespace DomainModel\Gateway;
 
-use DomainModel\Object\DomainObject;
+use DomainModel\Object\DomainObjectInterface;
 use Zend\Db\TableGateway\TableGateway as BaseTableGateway;
 
 /**
@@ -18,38 +18,67 @@ use Zend\Db\TableGateway\TableGateway as BaseTableGateway;
 class DomainTableGateway extends BaseTableGateway
 {
     /**
-     * @param DomainObject $object
+     * @param string|null $name
      *
      * @return int
      */
-    public function insertObject(DomainObject $object)
+    public function getLastInsertValue($name = null)
     {
-        return $this->insert($object->toArray());
+        return $this->adapter->getDriver()->getConnection()->getLastGeneratedValue($name);
     }
 
     /**
-     * @param DomainObject $object
+     * @param DomainObjectInterface $object
      *
-     * @return int
+     * @return int Affected rows amount
      */
-    public function updateObject(DomainObject $object)
+    public function insertObject(DomainObjectInterface $object)
+    {
+        $insertResult = $this->insert($object->toArray());
+
+        if ($insertResult) {
+            $primary = $object->toArrayPrimary();
+
+            foreach ($primary as $key => &$value) {
+                $value = $this->getLastInsertValue($key);
+            }
+
+            $object->fromArray($primary);
+        }
+
+        return $insertResult;
+    }
+
+    /**
+     * @param DomainObjectInterface $object
+     *
+     * @return int Affected rows amount
+     */
+    public function updateObject(DomainObjectInterface $object)
     {
         return $this->update($object->toArray(), $object->toArrayPrimary());
     }
 
     /**
-     * @param DomainObject $object
+     * @param DomainObjectInterface $object
      *
-     * @return int
+     * @return int Affected rows amount
      */
-    public function saveObject(DomainObject $object)
+    public function saveObject(DomainObjectInterface $object)
     {
-        if ($object->new) {
-            $result = $this->insertObject($object);
+        $isNew = false;
 
-            if ($result) {
-                $object->new = false;
+        $primary = $object->toArrayPrimary();
+
+        foreach ($primary as &$value) {
+            if (is_null($value)) {
+                $isNew = true;
+                break;
             }
+        }
+
+        if ($isNew) {
+            $result = $this->insertObject($object);
 
             return $result;
         } else {
@@ -58,11 +87,11 @@ class DomainTableGateway extends BaseTableGateway
     }
 
     /**
-     * @param DomainObject $object
+     * @param DomainObjectInterface $object
      *
-     * @return int
+     * @return int Affected rows amount
      */
-    public function deleteObject(DomainObject $object)
+    public function deleteObject(DomainObjectInterface $object)
     {
         return $this->delete($object->toArrayPrimary());
     }

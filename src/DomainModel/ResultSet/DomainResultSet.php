@@ -8,7 +8,7 @@
 
 namespace DomainModel\ResultSet;
 
-use DomainModel\Object\DomainObject;
+use DomainModel\Object\DomainObjectInterface;
 use Zend\Db\ResultSet\AbstractResultSet;
 
 /**
@@ -17,7 +17,7 @@ use Zend\Db\ResultSet\AbstractResultSet;
  */
 class DomainResultSet extends AbstractResultSet
 {
-    /** @var  mixed */
+    /** @var  DomainObjectInterface */
     protected $objectPrototype;
 
     /**
@@ -28,7 +28,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @param DomainObject $objectPrototype
+     * @param DomainObjectInterface $objectPrototype
      */
     public function setObjectPrototype($objectPrototype)
     {
@@ -36,7 +36,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @return array|mixed|DomainObject
+     * @return array|mixed|DomainObjectInterface
      */
     public function current()
     {
@@ -44,9 +44,8 @@ class DomainResultSet extends AbstractResultSet
 
         if (is_array($data)) {
             $instance = clone $this->objectPrototype;
-            if ($instance instanceof DomainObject || method_exists($instance, 'fromArray')) {
+            if ($instance instanceof DomainObjectInterface || method_exists($instance, 'fromArray')) {
                 $instance->fromArray($data);
-                $instance->new = false;
 
                 return $instance;
             } else {
@@ -58,7 +57,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @return DomainObject[]
+     * @return DomainObjectInterface[]
      */
     public function toObjectArray()
     {
