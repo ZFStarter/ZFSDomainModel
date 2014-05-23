@@ -6,13 +6,13 @@
  * Time: 18:34
  */
 
-namespace DomainModel\Object;
+namespace ZFS\DomainModel\Object;
 
 /**
- * Class DomainObjectMagic
- * @package DomainModel\Object
+ * Class ObjectMagic
+ * @package ZFS\DomainModel\Object
  */
-class DomainObjectMagic extends DomainObject
+class ObjectMagic extends Object
 {
     /**
      * @param string $name

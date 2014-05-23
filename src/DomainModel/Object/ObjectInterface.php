@@ -6,10 +6,17 @@
  * Time: 11:40
  */
 
-namespace DomainModel\Object;
+namespace ZFS\DomainModel\Object;
 
-interface DomainObjectInterface
+/**
+ * Interface ObjectInterface
+ * @package ZFS\DomainModel\Object
+ */
+interface ObjectInterface
 {
+    /**
+     * @return array
+     */
     public function toArrayPrimary();
 
     /**

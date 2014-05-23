@@ -6,26 +6,26 @@
  * Time: 22:04
  */
 
-namespace DomainModel;
+namespace ZFS\DomainModel;
 
-use DomainModel\Gateway\DomainTableGateway;
-use DomainModel\Object\DomainObject;
-use DomainModel\ResultSet\DomainResultSet;
-use DomainModel\Service\Options;
+use ZFS\DomainModel\Gateway\TableGateway;
+use ZFS\DomainModel\Object\ObjectInterface;
+use ZFS\DomainModel\ResultSet\ResultSet;
+use ZFS\DomainModel\Service\Options;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Class DomainModelService
- * @package DomainModel
+ * Class Service
+ * @package ZFS\DomainModel
  */
-class DomainModelService implements ServiceLocatorAwareInterface
+class Service implements ServiceLocatorAwareInterface
 {
-    const DOMAIN_MODEL_ADAPTER          = 'DomainModel\Adapter';
-    const DOMAIN_MODEL_TABLE_GATEWAY    = 'DomainModel\Gateway\DomainTableGateway';
-    const DOMAIN_MODEL_RESULT_SET       = 'DomainModel\ResultSet\DomainResultSet';
-    const DOMAIN_MODEL_OBJECT_INTERFACE = 'DomainModel\Object\DomainObjectInterface';
-    const DOMAIN_MODEL_OBJECT_MAGIC     = 'DomainModel\Object\DomainObjectMagic';
+    const DOMAIN_MODEL_ADAPTER          = 'ZFS\DomainModel\Adapter';
+    const DOMAIN_MODEL_TABLE_GATEWAY    = 'ZFS\DomainModel\Gateway\TableGateway';
+    const DOMAIN_MODEL_RESULT_SET       = 'ZFS\DomainModel\ResultSet\ResultSet';
+    const DOMAIN_MODEL_OBJECT_INTERFACE = 'ZFS\DomainModel\Object\ObjectInterface';
+    const DOMAIN_MODEL_OBJECT_MAGIC     = 'ZFS\DomainModel\Object\ObjectMagic';
 
     /** @var ServiceLocatorInterface */
     protected $serviceLocator;
@@ -53,7 +53,7 @@ class DomainModelService implements ServiceLocatorAwareInterface
     /**
      * @param mixed $data
      *
-     * @return DomainTableGateway
+     * @return TableGateway
      * @throws \RuntimeException
      */
     public function createTableGateway($data)
@@ -130,7 +130,7 @@ class DomainModelService implements ServiceLocatorAwareInterface
         //endregion
 
         //region creation
-        /** @var DomainObject $objectPrototype */
+        /** @var ObjectInterface $objectPrototype */
         $objectPrototype = new $objectPrototypeClassName();
 
         if ($objectPrototype instanceof ServiceLocatorAwareInterface) {
@@ -138,7 +138,7 @@ class DomainModelService implements ServiceLocatorAwareInterface
             $objectPrototype->setServiceLocator($this->getServiceLocator());
         }
 
-        /** @var DomainResultSet $resultSetPrototype */
+        /** @var ResultSet $resultSetPrototype */
         $resultSetPrototype = new $resultSetPrototypeClassName();
         $resultSetPrototype->setObjectPrototype($objectPrototype);
 
@@ -147,7 +147,7 @@ class DomainModelService implements ServiceLocatorAwareInterface
             $resultSetPrototype->setServiceLocator($this->getServiceLocator());
         }
 
-        /** @var DomainTableGateway $tableGateway */
+        /** @var TableGateway $tableGateway */
         $tableGateway = new $tableGatewayClassName($tableName, $adapter, $features, $resultSetPrototype, $sql);
         if ($tableGateway instanceof ServiceLocatorAwareInterface) {
             /** @var ServiceLocatorAwareInterface $tableGateway */

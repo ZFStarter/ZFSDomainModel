@@ -6,7 +6,7 @@
  * Time: 12:14
  */
 
-namespace DomainModel\Feature;
+namespace ZFS\DomainModel\Feature;
 
 use Zend\Db\Sql\Insert;
 use Zend\Db\Sql\Update;
@@ -15,7 +15,7 @@ use Zend\Db\TableGateway\Feature\MetadataFeature;
 
 /**
  * Class FilterColumnsFeature
- * @package DomainModel\Feature
+ * @package ZFS\DomainModel\Feature
  */
 class FilterColumnsFeature extends AbstractFeature
 {

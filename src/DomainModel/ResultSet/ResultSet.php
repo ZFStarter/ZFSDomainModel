@@ -6,18 +6,18 @@
  * Time: 18:32
  */
 
-namespace DomainModel\ResultSet;
+namespace ZFS\DomainModel\ResultSet;
 
-use DomainModel\Object\DomainObjectInterface;
+use ZFS\DomainModel\Object\ObjectInterface;
 use Zend\Db\ResultSet\AbstractResultSet;
 
 /**
- * Class DomainResultSet
- * @package DomainModel\ResultSet
+ * Class ResultSet
+ * @package ZFS\DomainModel\ResultSet
  */
-class DomainResultSet extends AbstractResultSet
+class ResultSet extends AbstractResultSet
 {
-    /** @var  DomainObjectInterface */
+    /** @var  ObjectInterface */
     protected $objectPrototype;
 
     /**
@@ -28,7 +28,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @param DomainObjectInterface $objectPrototype
+     * @param ObjectInterface $objectPrototype
      */
     public function setObjectPrototype($objectPrototype)
     {
@@ -36,7 +36,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @return array|mixed|DomainObjectInterface
+     * @return array|mixed|ObjectInterface
      */
     public function current()
     {
@@ -44,7 +44,7 @@ class DomainResultSet extends AbstractResultSet
 
         if (is_array($data)) {
             $instance = clone $this->objectPrototype;
-            if ($instance instanceof DomainObjectInterface || method_exists($instance, 'fromArray')) {
+            if ($instance instanceof ObjectInterface || method_exists($instance, 'fromArray')) {
                 $instance->fromArray($data);
 
                 return $instance;
@@ -57,7 +57,7 @@ class DomainResultSet extends AbstractResultSet
     }
 
     /**
-     * @return DomainObjectInterface[]
+     * @return ObjectInterface[]
      */
     public function toObjectArray()
     {

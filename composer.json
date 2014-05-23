@@ -1,6 +1,6 @@
 {
-    "name": "filipp-qoma/zf2-domain-model",
-    "description": "Alternative DB implementation of Zend Framework 2 Zend\\Db",
+    "name": "filipp-qoma/zfs-domain-model",
+    "description": "Alternative DBAL implementation of Zend Framework 2 Zend\\Db for ZFStarter",
     "license": "MIT",
     "authors": [
         {
@@ -10,8 +10,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "DomainModel\\": "src/"
+        "psr-4": {
+            "ZFS\\DomainModel\\": "src/DomainModel"
         }
     },
     "require": {

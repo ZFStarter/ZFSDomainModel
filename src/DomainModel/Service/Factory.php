@@ -6,28 +6,28 @@
  * Time: 22:46
  */
 
-namespace DomainModel\Service;
+namespace ZFS\DomainModel\Service;
 
-use DomainModel\DomainModelService;
+use ZFS\DomainModel\Service;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Class DomainModelServiceFactory
- * @package DomainModel\Service
+ * Class Factory
+ * @package ZFS\DomainModel\Service
  */
-class DomainModelServiceFactory implements FactoryInterface
+class Factory implements FactoryInterface
 {
     /**
      * Create service
      *
      * @param ServiceLocatorInterface $serviceLocator
      *
-     * @return DomainModelService
+     * @return Service
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $service = new DomainModelService();
+        $service = new Service();
         $service->setServiceLocator($serviceLocator);
 
         return $service;

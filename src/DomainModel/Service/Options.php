@@ -6,11 +6,11 @@
  * Time: 12:11
  */
 
-namespace DomainModel\Service;
+namespace ZFS\DomainModel\Service;
 
 /**
  * Class Options
- * @package DomainModel\Service
+ * @package ZFS\DomainModel\Service
  */
 final class Options
 {

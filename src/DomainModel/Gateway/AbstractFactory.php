@@ -6,16 +6,16 @@
  * Time: 11:59
  */
 
-namespace DomainModel\Gateway;
+namespace ZFS\DomainModel\Gateway;
 
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Class DomainTableGatewayAbstractFactory
- * @package DomainModel\Gateway
+ * Class AbstractFactory
+ * @package ZFS\DomainModel\Gateway
  */
-class DomainTableGatewayAbstractFactory implements AbstractFactoryInterface
+class AbstractFactory implements AbstractFactoryInterface
 {
     /** @var array */
     protected $instances = array();
@@ -63,6 +63,6 @@ class DomainTableGatewayAbstractFactory implements AbstractFactoryInterface
      */
     protected function create(ServiceLocatorInterface $serviceLocator, $requestedName)
     {
-        return $serviceLocator->get('DomainModelService')->createTableGateway($this->provides[$requestedName]);
+        return $serviceLocator->get('ZFS\DomainModel\Service')->createTableGateway($this->provides[$requestedName]);
     }
 }

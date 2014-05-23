@@ -6,13 +6,13 @@
  * Time: 18:34
  */
 
-namespace DomainModel\Object;
+namespace ZFS\DomainModel\Object;
 
 /**
- * Class DomainObject
- * @package DomainModel\Object
+ * Class Object
+ * @package ZFS\DomainModel\Object
  */
-class DomainObject implements DomainObjectInterface
+class Object implements ObjectInterface
 {
     /** @var  array */
     protected $data;
