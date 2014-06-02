@@ -40,4 +40,14 @@ class ObjectMagic extends Object
             $this->set($name, $value);
         }
     }
+
+    /**
+     * @param string $name
+     *
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return $this->$name !== null;
+    }
 }
