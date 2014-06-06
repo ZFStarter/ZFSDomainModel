@@ -1,5 +1,5 @@
 {
-    "name": "filipp-qoma/zfs-domain-model",
+    "name": "zfstarter/zfs-domain-model",
     "description": "Alternative DBAL implementation of Zend Framework 2 Zend\\Db for ZFStarter",
     "license": "MIT",
     "authors": [
