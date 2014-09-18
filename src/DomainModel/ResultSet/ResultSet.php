@@ -46,6 +46,7 @@ class ResultSet extends AbstractResultSet
             $instance = clone $this->objectPrototype;
             if ($instance instanceof ObjectInterface || method_exists($instance, 'fromArray')) {
                 $instance->fromArray($data);
+                $instance->isNew(false);
 
                 return $instance;
             } else {

@@ -18,27 +18,6 @@ use Zend\Db\TableGateway\TableGateway as BaseTableGateway;
 class TableGateway extends BaseTableGateway
 {
     /**
-     * @param ObjectInterface $object
-     *
-     * @return bool
-     */
-    public function isNew(ObjectInterface $object)
-    {
-        $isNew = false;
-
-        $primary = $object->toArrayPrimary();
-
-        foreach ($primary as &$value) {
-            if (is_null($value)) {
-                $isNew = true;
-                break;
-            }
-        }
-
-        return $isNew;
-    }
-
-    /**
      * @param string|null $name
      *
      * @return int
@@ -65,6 +44,7 @@ class TableGateway extends BaseTableGateway
             }
 
             $object->fromArray($primary);
+            $object->isNew(false);
         }
 
         return $insertResult;
@@ -87,10 +67,8 @@ class TableGateway extends BaseTableGateway
      */
     public function saveObject(ObjectInterface $object)
     {
-        if ($this->isNew($object)) {
-            $result = $this->insertObject($object);
-
-            return $result;
+        if ($object->isNew()) {
+            return $this->insertObject($object);
         } else {
             return $this->updateObject($object);
         }

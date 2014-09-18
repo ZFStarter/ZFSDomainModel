@@ -28,4 +28,11 @@ interface ObjectInterface
      * @param array $array
      */
     public function fromArray(array $array);
+
+    /**
+     * @param bool|null $new
+     *
+     * @return bool
+     */
+    public function isNew($new = null);
 }

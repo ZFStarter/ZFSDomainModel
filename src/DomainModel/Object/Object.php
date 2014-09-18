@@ -14,6 +14,9 @@ namespace ZFS\DomainModel\Object;
  */
 class Object implements ObjectInterface
 {
+    /** @var bool  */
+    protected $isNew = true;
+
     /** @var  array */
     protected $data;
 
@@ -29,6 +32,20 @@ class Object implements ObjectInterface
     public function __construct($data = array())
     {
         $this->fromArray($data);
+    }
+
+    /**
+     * @param bool|null $new
+     *
+     * @return bool
+     */
+    public function isNew($new = null)
+    {
+        if (is_bool($new)) {
+            $this->isNew = $new;
+        }
+
+        return $this->isNew;
     }
 
     /**
