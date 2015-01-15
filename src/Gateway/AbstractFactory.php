@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Qoma
- * Date: 19/02/14
- * Time: 11:59
- */
 
 namespace ZFS\DomainModel\Gateway;
 
@@ -63,6 +57,6 @@ class AbstractFactory implements AbstractFactoryInterface
      */
     protected function create(ServiceLocatorInterface $serviceLocator, $requestedName)
     {
-        return $serviceLocator->get('ZFS\DomainModel\Service')->createTableGateway($this->provides[$requestedName]);
+        return $serviceLocator->get('ZFS\DomainModel\Service')->getTableGateway($this->provides[$requestedName]);
     }
 }
