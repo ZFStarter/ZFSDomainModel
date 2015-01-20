@@ -188,7 +188,8 @@ class Service implements ServiceLocatorAwareInterface
         }
 
         if (is_array($data[Options::OPTION_TABLE_FEATURES])) {
-            foreach ($data[Options::OPTION_TABLE_FEATURES] as &$feature) {
+            $features = $data[Options::OPTION_TABLE_FEATURES];
+            foreach ($features as &$feature) {
                 if (is_string($feature)) {
                     if ($this->getServiceLocator()->has($feature)) {
                         $feature = $this->getServiceLocator()->get($feature);
@@ -209,6 +210,7 @@ class Service implements ServiceLocatorAwareInterface
                     );
                 }
             }
+            return $features;
         } else {
             return null;
         }
