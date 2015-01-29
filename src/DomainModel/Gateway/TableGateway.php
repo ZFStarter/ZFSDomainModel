@@ -43,6 +43,8 @@ class TableGateway extends BaseTableGateway
                 $value = $this->getLastInsertValue($key);
             }
 
+            unset($value);
+
             $object->fromArray($primary);
             $object->isNew(false);
         }
