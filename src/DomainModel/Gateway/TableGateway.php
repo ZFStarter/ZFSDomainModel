@@ -40,7 +40,11 @@ class TableGateway extends BaseTableGateway
             $primary = $object->toArrayPrimary();
 
             foreach ($primary as $key => &$value) {
-                $value = $this->getLastInsertValue($key);
+                $insertedValue = $this->getLastInsertValue($key);
+
+                if ($insertedValue) {
+                    $value = $insertedValue;
+                }
             }
 
             unset($value);
