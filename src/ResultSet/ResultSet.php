@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Qoma
- * Date: 19/02/14
- * Time: 18:32
- */
 
 namespace ZFS\DomainModel\ResultSet;
 
