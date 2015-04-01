@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Qoma
- * Date: 19/02/14
- * Time: 12:04
- */
 
 namespace ZFS\DomainModel\Gateway;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Qoma
- * Date: 13/04/14
- * Time: 22:46
- */
 
 namespace ZFS\DomainModel\Service;
 

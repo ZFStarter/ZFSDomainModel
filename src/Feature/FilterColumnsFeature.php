@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Qoma
- * Date: 20/02/14
- * Time: 12:14
- */
 
 namespace ZFS\DomainModel\Feature;
 
@@ -24,7 +18,7 @@ class FilterColumnsFeature extends AbstractFeature
      */
     public function preInitialize()
     {
-        if (!$this->tableGateway->featureSet->getFeatureByClassName('MetadataFeature')) {
+        if (!$this->tableGateway->featureSet->getFeatureByClassName('Zend\Db\TableGateway\Feature\MetadataFeature')) {
             $this->tableGateway->featureSet->addFeature(new MetadataFeature());
             $this->tableGateway->featureSet->setTableGateway($this->tableGateway);
         }

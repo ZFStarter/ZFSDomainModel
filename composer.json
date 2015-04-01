@@ -1,5 +1,5 @@
 {
-    "name": "zfstarter/zfs-domain-model",
+    "name": "zfstarter/zfs-domainmodel",
     "description": "Alternative DBAL implementation of Zend Framework 2 Zend\\Db for ZFStarter",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "ZFS\\DomainModel\\": "src/DomainModel"
+            "ZFS\\DomainModel\\": "src"
         }
     },
     "require": {
