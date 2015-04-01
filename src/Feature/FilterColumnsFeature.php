@@ -18,7 +18,7 @@ class FilterColumnsFeature extends AbstractFeature
      */
     public function preInitialize()
     {
-        if (!$this->tableGateway->featureSet->getFeatureByClassName('MetadataFeature')) {
+        if (!$this->tableGateway->featureSet->getFeatureByClassName('Zend\Db\TableGateway\Feature\MetadataFeature')) {
             $this->tableGateway->featureSet->addFeature(new MetadataFeature());
             $this->tableGateway->featureSet->setTableGateway($this->tableGateway);
         }
